@@ -17,19 +17,19 @@ return new class extends Migration
             $table->boolean('active');
             $table->dateTime('end');
 
-            $table->binary('photo');
+            //$table->binary('photo');
             $table->string('manufacturer');
             $table->string('model');
             $table->year('year');
             $table->integer('mileage');
-            $table->set('fuel', ['Petrol', 'Diesel', 'LPG']);
-            $table->double('engineSize', 1, 1);
+            $table->set('fuel', ['Petrol', 'Diesel']);
+            $table->float('engineSize', 2, 1);
             $table->integer('horsePower');
             $table->set('transmission', ['Manual', 'Automatic']);
             $table->string('description');
 
             $table->integer('minBid');
-            $table->integer('currentBid');
+            $table->integer('currentBid')->nullable();
             $table->unsignedBigInteger('winningBidderID')->nullable();
             $table->integer('buyPrice')->nullable();
             
