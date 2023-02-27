@@ -64,6 +64,11 @@ class LicitationFactory extends Factory
         $manufacturer = fake()->randomElement($manufacturers);
         $model = fake()->randomElement($models[$manufacturer]);
 
+        $randomPhotoNum = fake()->randomElement(['1', '2', '3']);
+        $subPath = $manufacturer . '/' . $model . '/' . $randomPhotoNum . '.jpg';
+        $subPath = strtolower(str_replace(' ', '_', $subPath));
+        $photoPath = '../public/images/example/' . $subPath;
+
         $descriptions = [
             "Car is in very good shape.",
             "Car is equipped with a lot of features.",
@@ -84,6 +89,7 @@ class LicitationFactory extends Factory
             'views' => fake()->numberBetween(10, 1000),
             'manufacturer' => $manufacturer,
             'model' => $model,
+            'photoPath' => $photoPath,
             'year' => strval(fake()->numberBetween(2005, 2022)),
             'mileage' => fake()->numberBetween(0, 300000),
             'fuel' => fake()->randomElement(['Petrol', 'Diesel']),

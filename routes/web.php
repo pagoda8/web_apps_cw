@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*
+Route::get('/photo', function() {
+    return response()->file('../public/images/example/bmw/5_series/1.jpg');
+}); */
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

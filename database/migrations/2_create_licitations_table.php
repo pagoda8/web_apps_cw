@@ -17,7 +17,7 @@ return new class extends Migration
             $table->boolean('active');
             $table->dateTime('end');
 
-            //$table->string('photoPath');
+            $table->string('photoPath');
             $table->string('manufacturer');
             $table->string('model');
             $table->year('year');
