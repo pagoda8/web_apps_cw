@@ -20,38 +20,14 @@ class LicitationFactory extends Factory
         $allUsers = DB::table('users')->get();
         $randomUser = fake()->randomElement($allUsers);
 
-        $active = fake()->boolean();
-        $end = null;
-        if ($active == true) {
-            $end = fake()->dateTimeBetween('now', '+30 days');
-        }
-        else {
-            $end = fake()->dateTimeBetween('-30 days', 'now');
-        }
-
         $base = fake()->numberBetween(1, 50);
         $multiplier = fake()->randomElement([100, 1000]);
         $minBid = $base * $multiplier;
         $minBid = fake()->randomElement([1, $minBid]);
-
-        $currentBid = fake()->numberBetween($minBid, 75000);
-        $currentBid = fake()->randomElement([null, $currentBid]);
         
-        $min = null;
-        if ($currentBid != null) {
-            $min = max($minBid, $currentBid);
-        }
-        else {
-            $min = $minBid;
-        }
-        $buyPrice = fake()->numberBetween(max($min, 1000), 100000);
+        $buyPrice = fake()->numberBetween(max($minBid, 1000), 100000);
         $buyPrice = intdiv($buyPrice, 100) * 100 + 100;
         $buyPrice = fake()->randomElement([null, $buyPrice]);
-
-        $winningBidderID = null;
-        if ($currentBid != null) {
-            $winningBidderID = DB::table('users')->where('id', '<>', $randomUser->id)->inRandomOrder()->first()->id;
-        }
 
         $manufacturers = ['BMW', 'Mercedes-Benz', 'Porsche', 'Volkswagen'];
         $models = [
@@ -79,22 +55,19 @@ class LicitationFactory extends Factory
         ];
 
         return [
-            'creatorID' => $randomUser->id,
-            'end' => $end,
-            'active' => $active,
-            'minBid' => $minBid,
-            'currentBid' => $currentBid,
-            'buyPrice' => $buyPrice,
-            'winningBidderID' => $winningBidderID,
+            'user_id' => $randomUser->id,
+            'end' => fake()->dateTimeBetween('-30 days', '+30 days'),
+            'min_bid' => $minBid,
+            'buy_price' => $buyPrice,
             'views' => fake()->numberBetween(10, 1000),
             'manufacturer' => $manufacturer,
             'model' => $model,
-            'photoPath' => $photoPath,
+            'photo_path' => $photoPath,
             'year' => strval(fake()->numberBetween(2005, 2022)),
             'mileage' => fake()->numberBetween(0, 300000),
             'fuel' => fake()->randomElement(['Petrol', 'Diesel']),
-            'engineSize' => fake()->randomFloat(1, 1, 4),
-            'horsePower' => fake()->numberBetween(70, 500),
+            'engine_size' => fake()->randomFloat(1, 1, 4),
+            'horse_power' => fake()->numberBetween(70, 500),
             'transmission' => fake()->randomElement(['Manual', 'Automatic']),
             'description' => fake()->randomElement($descriptions),
         ];

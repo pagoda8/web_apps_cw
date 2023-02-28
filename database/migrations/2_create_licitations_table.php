@@ -13,25 +13,22 @@ return new class extends Migration
     {
         Schema::create('licitations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('creatorID');
-            $table->boolean('active');
+            $table->unsignedBigInteger('user_id');
             $table->dateTime('end');
 
-            $table->string('photoPath');
+            $table->string('photo_path');
             $table->string('manufacturer');
             $table->string('model');
             $table->year('year');
             $table->integer('mileage');
             $table->set('fuel', ['Petrol', 'Diesel']);
-            $table->float('engineSize', 2, 1);
-            $table->integer('horsePower');
+            $table->float('engine_size', 2, 1);
+            $table->integer('horse_power');
             $table->set('transmission', ['Manual', 'Automatic']);
             $table->string('description');
 
-            $table->integer('minBid');
-            $table->integer('currentBid')->nullable();
-            $table->unsignedBigInteger('winningBidderID')->nullable();
-            $table->integer('buyPrice')->nullable();
+            $table->integer('min_bid');
+            $table->integer('buy_price')->nullable();
             
             $table->integer('views');
             $table->timestamps();

@@ -34,8 +34,8 @@ class CommentFactory extends Factory
         ];
 
         return [
-            'authorID' => $randomUser->id,
-            'licitationID' => $randomLicitation->id,
+            'user_id' => $randomUser->id,
+            'licitation_id' => $randomLicitation->id,
             'comment' => fake()->randomElement($comments),
         ];
     }
