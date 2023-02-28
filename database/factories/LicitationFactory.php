@@ -20,13 +20,19 @@ class LicitationFactory extends Factory
         $allUsers = DB::table('users')->get();
         $randomUser = fake()->randomElement($allUsers);
 
+        //Generate a starting bid amount between 100 and 50 000,
+        //that is divisable by 100 (looks better)
         $base = fake()->numberBetween(1, 50);
         $multiplier = fake()->randomElement([100, 1000]);
         $minBid = $base * $multiplier;
+        //Select either the generated amount or 1 (no minimum bid)
         $minBid = fake()->randomElement([1, $minBid]);
         
+        //Generate a buy now price bigger than minBid and 1000 and less than 100 000
         $buyPrice = fake()->numberBetween(max($minBid, 1000), 100000);
+        //Remove last two digits and make sure it's bigger than minBid
         $buyPrice = intdiv($buyPrice, 100) * 100 + 100;
+        //Select either the generated amount or null (no buy price)
         $buyPrice = fake()->randomElement([null, $buyPrice]);
 
         $manufacturers = ['BMW', 'Mercedes-Benz', 'Porsche', 'Volkswagen'];
@@ -40,6 +46,8 @@ class LicitationFactory extends Factory
         $manufacturer = fake()->randomElement($manufacturers);
         $model = fake()->randomElement($models[$manufacturer]);
 
+        //Create path to random existing appropriate car model photo,
+        //(just for seeding purposes)
         $randomPhotoNum = fake()->randomElement(['1', '2', '3']);
         $subPath = $manufacturer . '/' . $model . '/' . $randomPhotoNum . '.jpg';
         $subPath = strtolower(str_replace(' ', '_', $subPath));
