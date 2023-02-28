@@ -4,8 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PharIo\Manifest\License;
 
 class Bid extends Model
 {
     use HasFactory;
+
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
+    public function licitation() {
+        return $this->belongsTo(Licitation::class);
+    }
 }
