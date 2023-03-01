@@ -20,7 +20,8 @@ class UserFactory extends Factory
         $lastName = fake()->lastName();
         return [
             'name' => $firstName . " " . $lastName,
-            'email' => strtolower($firstName . "." . $lastName . "@" . fake()->freeEmailDomain()),
+            'email' => strtolower($firstName . "." . $lastName 
+                . "@" . fake()->freeEmailDomain()),
         ];
     }
 }
