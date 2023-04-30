@@ -22,6 +22,7 @@ class UserFactory extends Factory
             'name' => $firstName . " " . $lastName,
             'email' => strtolower($firstName . "." . $lastName 
                 . "@" . fake()->freeEmailDomain()),
+            'password' => "12345678",
         ];
     }
 }

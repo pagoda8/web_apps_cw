@@ -3,6 +3,8 @@
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +22,22 @@ Route::get('/photo', function() {
     return response()->file('../public/images/example/bmw/5_series/1.jpg');
 }); */
 
-Route::get('/licitation_details/{id}', [PagesController::class, 'licitation_details']);
+Route::get('/licitation_details/{id}', [PagesController::class, 'licitation_details'])->middleware(['auth']);
 
-Route::get('/create_licitation', [PagesController::class, 'create_licitation']);
+Route::get('/create_licitation', [PagesController::class, 'create_licitation'])->middleware(['auth']);
 
-Route::get('/user_profile/{id}', [PagesController::class, 'user_profile']);
+Route::get('/user_profile/{id}', [PagesController::class, 'user_profile'])->middleware(['auth']);
 
 
 
+
+
+
+Route::get('/logout', function() {
+    Session::flush();  
+    Auth::logout();
+    return redirect('/');
+});
 
 Route::get('/', [PagesController::class, 'licitation_list']);
 

@@ -6,7 +6,7 @@
 		  <a class="nav-link" href="/create_licitation">Create Licitation</a>
 		  <a class="nav-link" href="/login">Log in</a>
 		  <a class="nav-link" href="/register">Register</a>
-		  <a class="nav-link" href="#">Log out</a>
+		  <a class="nav-link" href="/logout">Log out</a>
 		</div>
 	</div>
 </nav>
