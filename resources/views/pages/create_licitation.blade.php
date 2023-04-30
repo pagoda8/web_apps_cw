@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Create Licitation</title>
-    </head>
-    <body class="antialiased">
-		<h1>Create Licitation</h1>
-    </body>
-</html>
+@extends('layouts.page_layout')
+
+@section('title')
+  <title>Create Licitation</title>
+@endsection
+
+@section('content')
+  <h1>Create Licitation</h1>
+@endsection

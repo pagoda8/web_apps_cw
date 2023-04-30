@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Car Licitations</title>
-    </head>
-    <body class="antialiased">
-		<h1>Car Licitations</h1>
-    </body>
-</html>
+@extends('layouts.page_layout')
+
+@section('title')
+  <title>Car Licitations</title>
+@endsection
+
+@section('content')
+  <h1>Car Licitations</h1>
+@endsection
