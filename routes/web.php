@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 Route::get('/photo', function() {
     return response()->file('../public/images/example/bmw/5_series/1.jpg');
 }); */
+
+Route::get('/licitation_details/{id}', [PagesController::class, 'licitation_details']);
+
+Route::get('/create_licitation', [PagesController::class, 'create_licitation']);
+
+Route::get('/user_profile/{id}', [PagesController::class, 'user_profile']);
+
+
+
+
+Route::get('/', [PagesController::class, 'licitation_list']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
