@@ -23,9 +23,7 @@ Route::get('/photo', function() {
 }); */
 
 Route::get('/licitation_details/{id}', [PagesController::class, 'licitation_details'])->middleware(['auth']);
-
 Route::get('/create_licitation', [PagesController::class, 'create_licitation'])->middleware(['auth']);
-
 Route::get('/user_profile/{id}', [PagesController::class, 'user_profile'])->middleware(['auth']);
 
 

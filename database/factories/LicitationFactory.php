@@ -51,7 +51,7 @@ class LicitationFactory extends Factory
         $randomPhotoNum = fake()->randomElement(['1', '2', '3']);
         $subPath = $manufacturer . '/' . $model . '/' . $randomPhotoNum . '.jpg';
         $subPath = strtolower(str_replace(' ', '_', $subPath));
-        $photoPath = '../public/images/example/' . $subPath;
+        $photoPath = '/images/example/' . $subPath;
 
         $descriptions = [
             "Car is in very good shape.",

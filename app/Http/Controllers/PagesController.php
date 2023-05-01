@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bid;
+use App\Models\Licitation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function licitation_list() {
-        return view('pages.licitation_list');
+        $licitations = Licitation::all();
+        $users = User::all();
+        $bids = Bid::all();
+        return view('pages.licitation_list', ['licitations' => $licitations, 'users' => $users, 'bids' => $bids]);
     }
 
     public function licitation_details(string $id) {
