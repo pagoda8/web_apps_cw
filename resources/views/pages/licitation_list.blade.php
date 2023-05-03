@@ -4,8 +4,11 @@
   <title>Car Licitations</title>
 @endsection
 
-@section('content')
+@section('header')
   <h1>Car Licitations</h1>
+@endsection
+
+@section('content')
   <br>
   <ul>
     @foreach ($licitations as $licitation)

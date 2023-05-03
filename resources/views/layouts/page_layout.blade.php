@@ -7,6 +7,20 @@
     </head>
     <body class="antialiased">
 		@include('elements.navbar')
+    @yield('header')
+    @if(session('message'))
+      <p><b>{{session('message')}}</b></p>
+    @endif
+    @if($errors->any())
+      <ul>
+        <u>Errors:</u>
+        <ul>
+          @foreach($errors->all() as $error)
+            <li>{{$error}}</li>
+          @endforeach
+        </ul>
+      </ul>
+    @endif
 		@yield('content')
     </body>
 </html>

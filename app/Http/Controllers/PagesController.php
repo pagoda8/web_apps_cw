@@ -41,6 +41,7 @@ class PagesController extends Controller
 
     public function user_profile($id) {
         $user = User::findOrFail($id);
+        $is_signed_in_user = auth()->user()->id == $id;
         $bids = Bid::all();
 
         $all_licitations = Licitation::all();
@@ -49,6 +50,11 @@ class PagesController extends Controller
             $licitations = $all_licitations->where('user_id', '==', $user->id)->sortByDesc('end');
         }
 
-        return view('pages.user_profile', ['user' => $user, 'licitations' => $licitations, 'bids' => $bids]);
+        return view('pages.user_profile', ['user' => $user, 'licitations' => $licitations, 'bids' => $bids, 'is_signed_in_user' => $is_signed_in_user]);
+    }
+
+    public function my_profile() {
+        $id = auth()->user()->id;
+        return self::user_profile($id);
     }
 }

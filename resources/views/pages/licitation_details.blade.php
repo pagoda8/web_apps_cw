@@ -4,8 +4,11 @@
   <title>Licitation Details</title>
 @endsection
 
-@section('content')
+@section('header')
   <h1>Licitation Details</h1>
+@endsection
+
+@section('content')
   <br>
   <ul>
     <h3>{{$licitation->manufacturer}} {{$licitation->model}} &lpar;{{$licitation->year}}&rpar;</h3>

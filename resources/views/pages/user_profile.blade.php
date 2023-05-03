@@ -4,8 +4,11 @@
   <title>User Profile</title>
 @endsection
 
-@section('content')
+@section('header')
   <h1>User Profile</h1>
+@endsection
+
+@section('content')
   <ul>
     <p>Name: {{$user->name}}</p>
     <p>E-mail: {{$user->email}}</p>
