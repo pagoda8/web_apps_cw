@@ -38,11 +38,29 @@
     <p>Comments:</p>
     <ul>
       @foreach($comments as $comment)
-        <li><a href="/user_profile/{{$comment->user_id}}">{{$all_users->where('id', '==', $comment->user_id)->first()->name}}</a> &lsqb;{{$comment->created_at}}&rsqb;: {{$comment->comment}}</li>
+        <li>
+          @if($comment->user_id == auth()->user()->id || $is_user_author)
+            <form method="POST" action="{{route('delete_comment', ['id' => $comment->id, 'licitation_id' => $licitation->id])}}">
+              @csrf
+              @method('DELETE')
+              <a href="/user_profile/{{$comment->user_id}}">{{$all_users->where('id', '==', $comment->user_id)->first()->name}}</a> &lsqb;{{$comment->created_at}}&rsqb;: {{$comment->comment}}
+              <button type="submit">Delete comment</button>
+            </form>
+          @else
+            <a href="/user_profile/{{$comment->user_id}}">{{$all_users->where('id', '==', $comment->user_id)->first()->name}}</a> &lsqb;{{$comment->created_at}}&rsqb;: {{$comment->comment}}
+          @endif
+        </li>
       @endforeach
       @if($comments->first() == null)
         <p>None</p>
       @endif
+      <form method="POST" action="{{route('add_comment', ['id' => $licitation->id])}}">
+        @csrf
+        <p>
+          <input type="text" name="comment" size="50" value="{{old('comment')}}">
+          <input type="submit" value="Add comment">
+        </p>
+      </form>
     </ul>
     @if($is_user_author)
       <form method="POST" action="{{route('delete_licitation', ['id' => $licitation->id])}}">

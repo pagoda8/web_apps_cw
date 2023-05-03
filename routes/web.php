@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\LicitationListController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProfileController;
@@ -25,8 +26,9 @@ Route::get('/user_profile/{id}', [PagesController::class, 'user_profile'])->midd
 Route::get('/my_profile', [PagesController::class, 'my_profile'])->middleware(['auth']);
 
 Route::post('/', [LicitationListController::class, 'store'])->middleware(['auth']);
-Route::delete('/licitation_details/{id}', [LicitationListController::class, 'destroy'])->name('delete_licitation')->middleware(['auth']);
-
+Route::delete('/delete_licitation/{id}', [LicitationListController::class, 'destroy'])->name('delete_licitation')->middleware(['auth']);
+Route::post('/licitation_details/{id}', [CommentsController::class, 'store'])->name('add_comment')->middleware(['auth']);
+Route::delete('/delete_comment/{id}/{licitation_id}', [CommentsController::class, 'destroy'])->name('delete_comment')->middleware(['auth']);
 
 
 Route::get('/logout', function() {

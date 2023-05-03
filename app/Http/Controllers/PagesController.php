@@ -31,7 +31,7 @@ class PagesController extends Controller
 
         $users = User::all();
         $all_comments = Comment::all();
-        $comments = $all_comments->where('licitation_id', '==', $licitation->id)->sortByDesc('created_at');
+        $comments = $all_comments->where('licitation_id', '==', $licitation->id)->sortBy('created_at');
 
         $licitation->views += 1;
         $licitation->save();
