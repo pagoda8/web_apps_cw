@@ -18,23 +18,22 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+Route::get('/', [PagesController::class, 'licitation_list']);
 Route::get('/licitation_details/{id}', [PagesController::class, 'licitation_details'])->middleware(['auth']);
 Route::get('/create_licitation', [PagesController::class, 'create_licitation'])->middleware(['auth']);
 Route::get('/user_profile/{id}', [PagesController::class, 'user_profile'])->middleware(['auth']);
 Route::get('/my_profile', [PagesController::class, 'my_profile'])->middleware(['auth']);
 
 Route::post('/', [LicitationListController::class, 'store'])->middleware(['auth']);
-
+Route::delete('/licitation_details/{id}', [LicitationListController::class, 'destroy'])->name('delete_licitation')->middleware(['auth']);
 
 
 
 Route::get('/logout', function() {
-    Session::flush();  
+    Session::flush();
     Auth::logout();
     return redirect('/');
 });
-
-Route::get('/', [PagesController::class, 'licitation_list']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

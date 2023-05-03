@@ -50,7 +50,7 @@ class LicitationListController extends Controller
         $licitation->user_id = auth()->user()->id;
         $licitation->end = now()->addDays($validatedData['duration']);
         $licitation->views = 0;
-        
+
         $licitation->manufacturer = $validatedData['manufacturer'];
         $licitation->model = $validatedData['model'];
         $licitation->year = $validatedData['year'];
@@ -71,7 +71,7 @@ class LicitationListController extends Controller
         $licitation->save();
 
         session()->flash('message', 'Licitation was created.');
-        return redirect('/');
+        return redirect('/my_profile');
     }
 
     /**
@@ -103,6 +103,9 @@ class LicitationListController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $licitation = Licitation::findOrFail($id);
+        $licitation->delete();
+
+        return redirect('/my_profile')->with('message', 'Licitation was deleted.');
     }
 }

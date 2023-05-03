@@ -44,6 +44,13 @@
         <p>None</p>
       @endif
     </ul>
+    @if($is_user_author)
+      <form method="POST" action="{{route('delete_licitation', ['id' => $licitation->id])}}">
+        @csrf
+        @method('DELETE')
+        <button type="submit">Delete licitation</button>
+      </form>
+    @endif
     <br><br>
   </ul>
 @endsection
