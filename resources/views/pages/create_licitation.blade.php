@@ -24,16 +24,16 @@
       <p>Car's mileage: <input type="text" name="mileage" value="{{old('mileage')}}"> miles</p>
       <p>
         Car's fuel type: 
-        <input type="radio" id="petrol" name="fuel" value="Petrol">
+        <input type="radio" id="petrol" name="fuel" value="Petrol" @if(old('fuel') == "Petrol") checked @endif>
         <label for="petrol">Petrol</label>
-        <input type="radio" id="diesel" name="fuel" value="Diesel">
+        <input type="radio" id="diesel" name="fuel" value="Diesel" @if(old('fuel') == "Diesel") checked @endif>
         <label for="diesel">Diesel</label>
       </p>
       <p>
         Car's transmission: 
-        <input type="radio" id="manual" name="transmission" value="Manual">
+        <input type="radio" id="manual" name="transmission" value="Manual" @if(old('transmission') == "Manual") checked @endif>
         <label for="manual">Manual</label>
-        <input type="radio" id="automatic" name="transmission" value="Automatic">
+        <input type="radio" id="automatic" name="transmission" value="Automatic" @if(old('transmission') == "Automatic") checked @endif>
         <label for="automatic">Automatic</label>
       </p>
       <p>Engine size: <input type="text" name="engine_size" value="{{old('engine_size')}}"> litres</p>
