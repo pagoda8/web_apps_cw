@@ -35,6 +35,22 @@
       <li>Engine size: {{$licitation->engine_size}} litres</li>
       <li>Horse power: {{$licitation->horse_power}} hp</li>
     </ul>
+    <p>Bids:</p>
+    <ul>
+      @foreach($bids as $bid)
+        <li><a href="/user_profile/{{$bid->user_id}}">{{$all_users->where('id', '==', $bid->user_id)->first()->name}}</a> &lsqb;{{$bid->created_at}}&rsqb;: £{{$bid->bid}}</li>
+      @endforeach
+      @if($bids->first() == null)
+        <p>None</p>
+      @endif
+      <form method="POST" action="{{route('place_bid', ['licitation_id' => $licitation->id])}}">
+        @csrf
+        <p>
+          £<input type="text" name="bid" value="{{old('bid')}}">
+          <input type="submit" value="Place bid">
+        </p>
+      </form>
+    </ul>
     <p>Comments:</p>
     <ul>
       @foreach($comments as $comment)

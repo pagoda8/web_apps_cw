@@ -15,7 +15,7 @@ class CommentsController extends Controller
         $comment = new Comment;
         $comment->user_id = auth()->user()->id;
         $comment->licitation_id = $id;
-        $comment->comment = $request->comment;
+        $comment->comment = $validatedData['comment'];
         $comment->save();
 
         session()->flash('message', 'Comment was added.');

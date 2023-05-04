@@ -21,15 +21,15 @@ class PagesController extends Controller
     public function licitation_details($id) {
         $licitation = Licitation::findOrFail($id);
         $user = User::findOrFail($licitation->user_id);
+        $users = User::all();
         $is_user_author = auth()->user()->id == $user->id;
 
-        $bids = Bid::all();
+        $bids = Bid::all()->where('licitation_id', '==', $licitation->id)->sortByDesc('created_at');
         $current_bid = null;
-        if($bids->where('licitation_id', '==', $licitation->id)->first()) {
-            $current_bid = $bids->where('licitation_id', '==', $licitation->id)->sortByDesc('created_at')->first()->bid;
+        if($bids->first()) {
+            $current_bid = $bids->first()->bid;
         }
 
-        $users = User::all();
         $all_comments = Comment::all();
         $comments = $all_comments->where('licitation_id', '==', $licitation->id)->sortBy('created_at');
 
@@ -37,7 +37,7 @@ class PagesController extends Controller
         $licitation->save();
 
         return view('pages.licitation_details', 
-            ['licitation' => $licitation, 'user' => $user, 'current_bid' => $current_bid, 'comments' => $comments, 'all_users' => $users, 'is_user_author' => $is_user_author]);
+            ['licitation' => $licitation, 'user' => $user, 'bids' => $bids, 'current_bid' => $current_bid, 'comments' => $comments, 'all_users' => $users, 'is_user_author' => $is_user_author]);
     }
 
     public function create_licitation() {
