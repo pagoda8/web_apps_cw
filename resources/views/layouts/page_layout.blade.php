@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet"/>
+        <link rel="stylesheet" href="{{asset('css/main.css')}}">
         @yield('title')
     </head>
     <body class="antialiased">
@@ -12,14 +14,10 @@
       <p><b>{{session('message')}}</b></p>
     @endif
     @if($errors->any())
-      <ul>
-        <u>Errors:</u>
-        <ul>
-          @foreach($errors->all() as $error)
-            <li>{{$error}}</li>
-          @endforeach
-        </ul>
-      </ul>
+      <p><u>Errors:</u></p>
+      @foreach($errors->all() as $error)
+        <p>{{$error}}</p>
+      @endforeach
     @endif
 		@yield('content')
     </body>

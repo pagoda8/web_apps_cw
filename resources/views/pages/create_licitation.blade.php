@@ -41,7 +41,7 @@
       <p>Car's description: <input type="text" name="description" size="25" value="{{old('description')}}"></p>
       <br>
       <input type="submit" value="Submit">
-      <a href="/">Cancel</a>
+      <a class="cancel-button" href="/">Cancel</a>
     </form>
   </ul>
   <br><br>

@@ -1,0 +1,60 @@
+body {
+	background-color: #fff;
+	color: #525759;
+	font-family: 'Nunito', sans-serif;
+	font-weight: 200;
+	text-align: center;
+	margin: 0;
+}
+
+ul {
+	text-align: left;
+	width: 50%;
+	position: relative;
+	left: 25%;
+}
+
+.navbar {
+	background-color: rgb(81, 158, 181);
+	height: 30px;
+	padding-top: 10px;
+}
+
+.nav-link {
+	color: #fff;
+	text-decoration: none;
+}
+
+input[type="submit"] {
+	color: #fff;
+	border-radius: 5px;
+    border: none;
+    font-family: inherit;
+	font-size: medium;
+	background-color: rgb(40, 164, 77);
+	cursor: pointer;
+}
+
+.cancel-button {
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+    border: none;
+    font-family: inherit;
+	font-size: medium;
+	background-color: rgb(212, 96, 42);
+	padding-top: 2.5px;
+	padding-bottom: 3.5px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+.delete-button {
+	color: #fff;
+	border-radius: 5px;
+    border: none;
+    font-family: inherit;
+	font-size: medium;
+	background-color: rgb(212, 96, 42);
+	cursor: pointer;
+}
