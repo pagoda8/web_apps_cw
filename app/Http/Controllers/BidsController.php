@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\BidEvent;
 use Illuminate\Http\Request;
 use App\Models\Bid;
 use App\Models\Licitation;
@@ -48,6 +49,10 @@ class BidsController extends Controller
             $bid->licitation_id = $licitation_id;
             $bid->bid = $request->bid;
             $bid->save();
+
+            $receiver_id = $licitation->user_id;
+            $name = $licitation->manufacturer . " " . $licitation->model . " (" . $licitation->year . ")";
+            event(new BidEvent($receiver_id, $request->bid, $name));
 
             session()->flash('message', 'Bid was placed.');
             return redirect('/licitation_details/' . $licitation_id);
