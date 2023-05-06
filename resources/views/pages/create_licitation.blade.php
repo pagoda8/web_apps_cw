@@ -10,7 +10,7 @@
 
 @section('content')
   <br>
-  <ul>
+  <ul class="create-form">
     <form method="POST" enctype="multipart/form-data" action="/">
       @csrf
       <p>Licitation duration: <input type="text" name="duration" value="{{old('duration')}}"> day&lpar;s&rpar;</p>
@@ -40,8 +40,10 @@
       <p>Horse power: <input type="text" name="horse_power" value="{{old('horse_power')}}"> hp</p>
       <p>Car's description: <input type="text" name="description" size="25" value="{{old('description')}}"></p>
       <br>
-      <input type="submit" value="Submit">
-      <a class="cancel-button" href="/">Cancel</a>
+      <div class="create-form-buttons">
+        <input type="submit" value="Submit">
+        <a class="cancel-button" href="/">Cancel</a>
+      </div>
     </form>
   </ul>
   <br><br>

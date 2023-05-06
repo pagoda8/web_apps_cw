@@ -34,24 +34,26 @@
   <p>Horse power: {{$licitation->horse_power}} hp</p>
   <br>
   <p><u>Bids:</u></p>
-  <ul>
+  <ul class="bids">
     @foreach($bids as $bid)
       <p><a href="/user_profile/{{$bid->user_id}}">{{$all_users->where('id', '==', $bid->user_id)->first()->name}}</a> &lsqb;{{$bid->created_at}}&rsqb;: £{{$bid->bid}}</p>
     @endforeach
     @if($bids->first() == null)
-      <p>None</p>
+      <p class="none-label-bids">None</p>
     @endif
     <form method="POST" action="{{route('place_bid', ['licitation_id' => $licitation->id])}}">
       @csrf
-      <p>
-        £<input type="text" name="bid" value="{{old('bid')}}">
-        <input type="submit" value="Place bid">
-      </p>
+      <div class="bids-input">
+        <p>
+          £<input type="text" name="bid" value="{{old('bid')}}">
+          <input type="submit" value="Place bid">
+        </p>
+      </div>
     </form>
   </ul>
   <br>
   <p><u>Comments:</u></p>
-  <ul>
+  <ul class="comments">
     @foreach($comments as $comment)
       <p>
         @if($comment->user_id == auth()->user()->id || $is_user_author)
@@ -68,7 +70,7 @@
       </p>
     @endforeach
     @if($comments->first() == null)
-      <p>None</p>
+      <p class="none-label-comments">None</p>
     @endif
     <form method="POST" action="{{route('add_comment', ['id' => $licitation->id])}}">
       @csrf

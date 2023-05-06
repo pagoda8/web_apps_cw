@@ -32,8 +32,6 @@ Route::post('/licitation_details/{id}', [CommentsController::class, 'store'])->n
 Route::delete('/delete_comment/{id}/{licitation_id}', [CommentsController::class, 'destroy'])->name('delete_comment')->middleware(['auth']);
 Route::post('/place_bid/{licitation_id}', [BidsController::class, 'store'])->name('place_bid')->middleware(['auth']);
 
-
-
 Route::get('/logout', function() {
     Session::flush();
     Auth::logout();
