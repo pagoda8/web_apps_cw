@@ -26,7 +26,7 @@
   @endif
   <br>
   <p><u>Car info:</u></p>
-  <p>Description: {{$licitation->description}}</p>
+  <p class="description-text">Description: {{$licitation->description}}</p>
   <p>Mileage: {{$licitation->mileage}} miles</p>
   <p>Fuel: {{$licitation->fuel}}</p>
   <p>Transmission: {{$licitation->transmission}}</p>
