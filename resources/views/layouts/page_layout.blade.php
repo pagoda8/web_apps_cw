@@ -19,10 +19,10 @@
             var channel = pusher.subscribe('user-channel-'.concat(id));
 
             channel.bind('bid-event', function(data) {
-              toastr.info("A new bid of £" + data.bid + " was placed on " + data.name);
+              toastr.info("A new bid of £" + data.bid + " was placed on " + data.name, "", {positionClass: 'toast-top-right'});
             });
             channel.bind('comment-event', function(data) {
-              toastr.info("A new comment was posted on " + data.name);
+              toastr.info("A new comment was posted on " + data.name, "", {positionClass: 'toast-top-right'});
             });
           </script>
         @endif
