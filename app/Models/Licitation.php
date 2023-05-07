@@ -20,4 +20,8 @@ class Licitation extends Model
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+
+    public function ai_response() {
+        return $this->hasOne(AIResponse::class);
+    }
 }

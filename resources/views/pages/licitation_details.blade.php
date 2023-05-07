@@ -33,6 +33,9 @@
   <p>Engine size: {{$licitation->engine_size}} litres</p>
   <p>Horse power: {{$licitation->horse_power}} hp</p>
   <br>
+  <p><u>Driving experience &lpar;AI-based&rpar;:</u></p>
+  <p class="ai-text">{{$ai_response}}</p>
+  <br>
   <p><u>Bids:</u></p>
   <ul class="bids">
     @foreach($bids as $bid)

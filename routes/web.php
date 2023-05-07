@@ -8,6 +8,13 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use App\APIs\OpenAICaller;
+
+//Service Container
+
+app()->singleton('open_ai', function($app) {
+    return new OpenAICaller();
+});
 
 /*
 |--------------------------------------------------------------------------

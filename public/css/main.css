@@ -37,6 +37,7 @@ ul {
 
 .comments {
 	width: 510px;
+	text-align: justify !important;
 }
 
 .none-label-comments {
@@ -56,6 +57,15 @@ ul {
 	left: 50%;
 	transform: translate(-50%, 0);
 	width: 250px;
+	text-align: justify;
+}
+
+.ai-text {
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+	width: 320px;
+	text-align: justify;
 }
 
 .navbar {

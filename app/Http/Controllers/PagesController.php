@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AIResponse;
 use App\Models\Bid;
 use App\Models\Licitation;
 use App\Models\User;
@@ -33,11 +34,27 @@ class PagesController extends Controller
         $all_comments = Comment::all();
         $comments = $all_comments->where('licitation_id', '==', $licitation->id)->sortBy('created_at');
 
+        $ai_response = "";
+        $saved_response = AIResponse::all()->where('licitation_id', '==', $licitation->id);
+        if($saved_response->first()) {
+            $ai_response = $saved_response->first()->response;
+        }
+        else {
+            $openAI = app()->make('open_ai');
+            $input = $licitation->manufacturer . " " . $licitation->model . " (" . $licitation->year . ")";
+            $ai_response = $openAI->getResponse($input);
+
+            $response = new AIResponse;
+            $response->licitation_id = $licitation->id;
+            $response->response = $ai_response;
+            $response->save();
+        }
+
         $licitation->views += 1;
         $licitation->save();
 
         return view('pages.licitation_details', 
-            ['licitation' => $licitation, 'user' => $user, 'bids' => $bids, 'current_bid' => $current_bid, 'comments' => $comments, 'all_users' => $users, 'is_user_author' => $is_user_author]);
+            ['licitation' => $licitation, 'user' => $user, 'bids' => $bids, 'current_bid' => $current_bid, 'comments' => $comments, 'all_users' => $users, 'is_user_author' => $is_user_author, 'ai_response' => $ai_response]);
     }
 
     public function create_licitation() {
