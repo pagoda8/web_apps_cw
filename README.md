@@ -9,6 +9,7 @@
 
 - Laravel framework
 - PHP, HTML & CSS
+- MVC pattern
 - Pusher API
 - OpenAI API
 
